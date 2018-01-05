@@ -1,0 +1,26 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+        <p style="color:blue">Runway Approval Stack</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card  *ngFor="let item of runwayapprovallist">
+    
+  
+    
+      <button ion-item  (click)="onSubmit(item.DATE,item.Inspection_Time)"  >
+        <ion-icon name="md-clipboard" item-start ></ion-icon>
+        <b>Date: </b>  {{ item.DATE  }} &nbsp;&nbsp; &nbsp; &nbsp;  <b>Time: </b> {{ item.Inspection_Time }}
+    </button>
+  
+      
+    
+  </ion-card>
+</ion-content>

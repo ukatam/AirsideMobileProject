@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+   <form #myForm="ngForm">
+    <fieldset ngModelGroup="inputs" #inputs="ngModelGroup">
+ <ion-grid>
+      <ion-row>
+ 
+        <ion-col scope="col" text-center>Observations</ion-col>
+        <ion-col scope="col" text-center>Acceptability</ion-col>
+        <ion-col scope="col" text-center>Action taken if not acceptable</ion-col>
+        <ion-col scope="col" text-center>NC Filed Ref No.</ion-col>
+    
+      </ion-row>
+
+    
+        <ion-row *ngFor="let user of users ; let i = index;" >
+   
+          <ion-col data-title = "Observations" >
+           {{ user.name }}
+          </ion-col>
+          <ion-col data-title = "Acceptability">
+            <ion-select>
+              <ion-option  value="1">   1   </ion-option>
+              <ion-option  value="2"> 2 </ion-option>
+              <ion-option  value="3">     3    </ion-option>
+            </ion-select>
+          </ion-col>
+         <ion-col data-title = "Action taken if not acceptable">
+         <input type="text" 
+               name="{{'someInputName'+i}}" value="" [(ngModel)]="user.name"  >
+              
+           </ion-col>
+        
+        </ion-row>
+
+ </ion-grid>
+  </fieldset>
+    <button ion-button icon-left large color="light" (click)="onRunwayChecklistPage(myForm)" block>   
+      <ion-icon name="mail-open"></ion-icon>
+      Runway Checklist
+  </button> 
+    </form>
+ 
+  <ion-list>
+    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-item>
+      <ion-icon name="ionic" item-left></ion-icon>
+      @ionicframework
+    </ion-item>
+  </ion-list>
+</ion-content>

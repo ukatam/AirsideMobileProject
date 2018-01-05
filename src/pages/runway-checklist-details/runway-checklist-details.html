@@ -1,0 +1,76 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center color="primary">
+        <p style="color:blue">Runway Checklist Details</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-grid style="color:black;">
+      <ion-row class="headers" style=" background-color: #3B5998; color: white;  font-weight:bold">
+ 
+        <ion-col scope="col" text-center>Observations</ion-col>
+        <ion-col scope="col" text-center>Acceptability</ion-col>
+   
+        <ion-col scope="col" text-center>NC Filed Ref No.</ion-col>
+        <ion-col scope="col" text-center>Action Taken</ion-col>
+    
+      </ion-row>
+
+    
+        <ion-row *ngFor="let user of runwaydetails" >
+   
+          <ion-col data-title = "Observations"  text-center >
+           {{ user.Observations }}
+          </ion-col>
+       
+         
+          <ion-col data-title = "Acceptability" [ngSwitch]="user.Acceptability" text-center >
+            
+          <p *ngSwitchCase="'+'" style=" background-color: rgb(59, 152, 79);">{{ user.Acceptability }}</p> 
+          <p *ngSwitchCase="'-'" style=" background-color: rgb(152, 59, 59);">{{ user.Acceptability }}</p> 
+          <p *ngSwitchCase="'0'" style=" background-color: rgb(68, 59, 152);">{{ user.Acceptability }}</p>
+        
+       </ion-col>
+      
+        <ion-col data-title = "Ref taken if not acceptable"  text-center>
+          {{ user.NC_Filed_Ref_No }}
+           </ion-col>
+           <ion-col  data-title = "Action Taken"  text-center>{{user.ActionTaken}}</ion-col>
+        </ion-row>
+
+ </ion-grid>
+
+ <!--<ion-row center>
+   <ion-col text-center>
+      <ion-label fixed> Remarks found if any: </ion-label>
+   </ion-col>
+   <ion-col text-center>
+      <ion-textarea type="text" [(ngModel)]="dutymanagerremarks" placeholder="Remarks" ></ion-textarea>
+   </ion-col>
+ </ion-row>-->
+
+ <ion-item>
+   <ion-label floating>Remarks found if any:</ion-label>
+   <ion-textarea type="text" [(ngModel)]="dutymanagerremarks"></ion-textarea>
+ </ion-item>
+     
+ <ion-row center>
+   <ion-col text-center>
+      <button ion-button icon-left round (click)="sendMessage()" color="danger">
+        <ion-icon name="send"></ion-icon>
+          Reject Checklist & Send Message
+      </button>
+      <button ion-button icon-left round (click)="approveChecklist()" color="danger">
+        <ion-icon name="close"></ion-icon>
+          Approve Checklist
+      </button>
+   </ion-col>
+ </ion-row>
+
+</ion-content>

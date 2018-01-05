@@ -1,0 +1,43 @@
+
+<ion-header>
+
+  <ion-navbar>
+    
+    <ion-title text-center color="primary">
+        <p style="color:blue">Taxiway Approval Checklist Details</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid style="color:black;">
+    <ion-row class="headers" style=" background-color: #3B5998; color: white;  font-weight:bold">
+
+      <ion-col scope="col" text-center>Observations</ion-col>
+      <ion-col scope="col" text-center>Acceptability</ion-col>
+      <ion-col scope="col" text-center>Action Taken</ion-col>
+      <ion-col scope="col" text-center>NC Filed Ref No.</ion-col>
+  
+    </ion-row>
+
+  
+      <ion-row *ngFor="let user of taxiwaydetails" >
+ 
+        <ion-col data-title = "Observations"  text-center >
+         {{ user.Observations }}
+        </ion-col>
+        <ion-col data-title = "Acceptability"  text-center>
+         {{ user.Acceptability }}
+        </ion-col>
+        <ion-col data-title = "Action Taken"  text-center>
+          {{ user.Action_Taken }}
+           </ion-col>
+      <ion-col data-title = "Ref taken if not acceptable"  text-center>
+        {{ user.NC_Filed_Ref_No }}
+         </ion-col>
+      </ion-row>
+
+</ion-grid>
+</ion-content>

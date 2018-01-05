@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>
+      <p style="color:blue">Airside Safety Management Dashboard</p>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-slides autoplay="2000" loop="true" speed="2000" align="center" style="align-content:center;">
+    <ion-slide>
+      <ion-avatar>
+        <img src="../../assets/images/aerialviewimg.jpg">
+      </ion-avatar>
+    </ion-slide>
+    <ion-slide>
+      <ion-avatar>
+        <img src="../../assets/images/airplane.jpg">
+      </ion-avatar>
+    </ion-slide>
+    <ion-slide>
+      <ion-avatar>
+        <img src="../../assets/images/airsideimg01.jpg">
+      </ion-avatar>
+    </ion-slide>
+  </ion-slides> -->
+
+    <div class="left">
+        <img id ="ttl" src="assets/images/CSIA_logo_new.png">
+    </div>
+    <div class="right">
+        <img id ="ttl" src="assets/images/GVK_new.png">
+    </div>
+
+    
+        <!-- <ion-avatar>
+          <img src="../../assets/images/airsidesafetymanagement.jpg">
+        </ion-avatar> -->
+   
+
+    <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/images/runway.jpg">
+          </ion-avatar>
+          <!--<ion-icon name="md-done-all" item-start></ion-icon>-->
+          <h2>Runway Inspection Checklist</h2>
+          <p style="width:100%">Runway 09/27 & 14/32</p>
+          <button ion-button clear (click)="onRunwayChecklistPage()" item-end>View</button>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/images/taxiway.jpg">
+          </ion-avatar>
+          <!--<ion-icon name="md-done-all" item-start></ion-icon>-->
+          <h2>Taxiway Inspection Checklist</h2>
+          <p  style="width:100%">A taxiway is a path for aircraft at an airport connecting runways
+             with aprons, hangars, terminals and other facilities.</p>
+          <button ion-button clear (click)="onTaxiwayChecklistPage()" item-end>View</button>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/images/apron.jpg">
+          </ion-avatar>
+          <!--<ion-icon name="md-done-all" item-start></ion-icon>-->
+          <h2>Apron Inspection Checklist</h2>
+          <p  style="width:100%">The apron area is the area of an airport
+             where aircraft are parked, unloaded or loaded, refueled or boarded.</p>
+          <button ion-button clear (click)="onApronChecklistPage()" item-end>View</button>
+        </ion-item>
+    </ion-list>
+
+    <!-- <button ion-button icon-left large color="light" (click)="onRunwayChecklistPage()" block>   
+      <ion-icon name="ios-alarm"></ion-icon>
+      Runway Checklist
+    </button> -->
+    <!-- <button ion-button icon-left large color="light" (click)="onTaxiwayChecklistPage()" block>   
+      <ion-icon name="ios-alarm-outline"></ion-icon>
+      Taxiway Checklist
+    </button>
+    <button ion-button icon-left large color="light" (click)="onApronChecklistPage()" block>   
+        <ion-icon name="md-alarm"></ion-icon>
+      Apron Checklist
+    </button>-->
+</ion-content> 

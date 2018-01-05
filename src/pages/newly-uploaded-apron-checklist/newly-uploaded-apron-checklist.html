@@ -1,0 +1,24 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>
+        <p style="color:blue">Newly Uploaded Apron Checklist</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+  
+        <ion-list>
+          <button ion-item  *ngFor="let item of apronchecklist" (click)="onSubmit(item.DATE,item.InspectionTime)" text-center>
+            <ion-icon name="md-clipboard" item-start ></ion-icon>
+            <b>Date: </b>  {{ item.DATE  }} &nbsp;&nbsp; &nbsp; &nbsp;  <b>Time: </b> {{ item.InspectionTime }}
+          </button>
+        </ion-list>
+
+    </ion-card>
+</ion-content>

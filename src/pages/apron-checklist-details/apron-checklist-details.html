@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+        <p style="color:blue">Apron Checklist Details</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid style="color:black;">
+        <ion-row class="headers" style=" background-color: #3B5998; color: white;  font-weight:bold">
+   
+          <ion-col scope="col" text-center>Stand</ion-col>
+          <ion-col scope="col" text-center>Surface Condition</ion-col>
+          <ion-col scope="col" text-center>Markings</ion-col>
+          <ion-col scope="col" text-center>Cleaning</ion-col>
+          <ion-col scope="col" text-center>Serviceability</ion-col>
+
+        </ion-row>
+  
+      
+          <ion-row *ngFor="let user of apronchecklistdetails" >
+     
+            <ion-col data-title = "Stand"  text-center >
+              {{ user.Stand }}
+            </ion-col>
+            <ion-col data-title = "Surface Condition"  text-center>
+              {{ user.Surface_Condition }}
+            </ion-col>
+            <ion-col data-title = "Markings"  text-center>
+              {{ user.NC_Filed_RMarkingsef_No }}
+            </ion-col>
+            <ion-col data-title = "Cleaning"  text-center>
+              {{ user.Cleaning }}
+            </ion-col>
+            <ion-col data-title = "Serviceability"  text-center>
+              {{ user.Serviceability }}
+            </ion-col>
+
+          </ion-row>
+  
+    </ion-grid>
+  
+   <ion-item>
+     <ion-label floating>Remarks found if any:</ion-label>
+     <ion-textarea type="text" [(ngModel)]="dutymanagerremarks"></ion-textarea>
+   </ion-item>
+       
+   <ion-row center>
+     <ion-col text-center>
+        <button ion-button icon-left round (click)="sendMessage()" color="danger">
+          <ion-icon name="send"></ion-icon>
+            Reject Checklist & Send Message
+        </button>
+        <button ion-button icon-left round (click)="approveChecklist()" color="danger">
+          <ion-icon name="close"></ion-icon>
+            Approve Checklist
+        </button>
+     </ion-col>
+   </ion-row>
+
+</ion-content>

@@ -1,0 +1,26 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+        <p style="color:blue">Pending For Approval Stack</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card >
+    
+   
+     <ion-list>
+       <button ion-item  *ngFor="let item of apronlist" (click)="onSubmit(item.DATE,item.InspectionTime)" >
+           <ion-icon name="md-clipboard" item-start ></ion-icon>
+           <b>Date: </b>  {{ item.DATE  }} &nbsp;&nbsp; &nbsp; &nbsp;  <b>Time: </b> {{ item.InspectionTime }}
+       </button>
+   
+       
+     </ion-list>
+   </ion-card>
+</ion-content>

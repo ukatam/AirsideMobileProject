@@ -1,0 +1,114 @@
+
+<ion-header>
+  
+    <ion-navbar>
+      <ion-title text-center color="primary">
+          <p style="color:blue"> Apron Checklist </p>
+      </ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  
+    <form>
+     
+      <ion-item>
+        <ion-label fixed> Date </ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" name="{{'date'}}" [(ngModel)]="date" min="{{ currentdate | date:'yyyy-MM-dd' }}" max="2020" ngModel required> </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating> Time of inspection </ion-label>
+        <!-- <ion-input type="text" formControlName="inspectiontime" ngModel required></ion-input> -->
+       
+        <ion-datetime name="{{'time'}}" [(ngModel)]="time" pickerFormat="HH:mm" ngModel required> </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating style="color: black;"> Taxiway Inspected </ion-label>
+       
+       <ion-select name="aproninspected" [(ngModel)]="aproninspected" (ngModelChange)="onChange($event)" ngModel required>
+           <ion-option *ngFor="let option of rwyOptions" [value]="option.AG_ID"> {{ option.Area_Group }} </ion-option>
+       </ion-select>
+      
+ </ion-item>
+ <input type="submit" class="btn btn-primary addnew pull-right" (click)="addNew()" value="Add">
+ <ion-item text-center>
+    + :Acceptable  &nbsp; &nbsp; &nbsp;
+    - :Not Acceptable &nbsp; &nbsp; &nbsp;
+    0 :Nill
+  </ion-item>      
+ <div id="demo">
+          <h1 style="color: navy; font-weight: bold;">Apron Checklist Form</h1>
+          <h2>This checklist contains apron parameters to perform daily checks</h2>
+          <div class="table-responsive-vertical shadow-z-1">
+              <table id="table" class="table table-hover table-mc-light-blue">
+                  <thead>
+                    <tr>
+                      <th text-center style="color: navy; font-weight: bold;">Stand</th>
+                      <th text-center style="color: navy; font-weight: bold;">Surface Condition</th>
+                      <th text-center style="color: navy; font-weight: bold;">Markings</th>
+                      <th text-center style="color: navy; font-weight: bold;">Cleaning</th>
+                      <th text-center style="color: navy; font-weight: bold;">Serviceability</th>
+                      <th text-center style="color: navy; font-weight: bold;">Action Taken</th>
+                    </tr>
+                  </thead>
+          <tbody>
+          <tr *ngFor="let personalDetail of ApronObservations; let i=index;">
+            <td>
+              <h6> <ion-input name="{{'stand'+i}}" disabled="TRUE" type="text" [(ngModel)]="personalDetail.stand" placeholder="enter stand" text-center></ion-input> </h6>
+            </td>
+            <td>
+              <h6 text-center> <select name="{{'surfcond'+i}}" [(ngModel)]="personalDetail.surfcond" ngModel required>
+                  <option *ngFor="let taxiwaycentrelinelights of acceptabilitySigns" [value]="taxiwaycentrelinelights">
+                    {{ taxiwaycentrelinelights }}
+                  </option>
+                </select> 
+               </h6>
+            </td>
+            <td>
+              <h6 text-center> <select name="{{'marking'+i}}" [(ngModel)]="personalDetail.marking" ngModel required>
+                  <option *ngFor="let taxiwaycentrelinelights of acceptabilitySigns" [value]="taxiwaycentrelinelights">
+                    {{ taxiwaycentrelinelights }}
+                  </option>
+                </select> 
+               </h6>
+            </td>
+            <td>
+              <h6 text-center>  <select name="{{'cleaning'+i}}" [(ngModel)]="personalDetail.cleaning" ngModel required>
+                  <option *ngFor="let taxiwaycentrelinelights of acceptabilitySigns" [value]="taxiwaycentrelinelights">
+                    {{ taxiwaycentrelinelights }}
+                  </option>
+                </select>
+               </h6>
+            </td>
+            <td >
+              <h6 text-center> <select name="{{'servicability'+i}}" [(ngModel)]="personalDetail.serviceability" ngModel required>
+                  <option *ngFor="let taxiwaycentrelinelights of acceptabilitySigns" [value]="taxiwaycentrelinelights">
+                    {{ taxiwaycentrelinelights }}
+                  </option>
+                </select>
+                </h6>
+            </td>
+            <td>
+               <h6> <ion-input name="{{'actiontaken'+i}}" type="text" [(ngModel)]="personalDetail.actiontaken" placeholder="Action Taken" text-center></ion-input> </h6>
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+     
+      
+      </div>
+    </div>
+   
+    <ion-item>
+      <ion-label floating>Other Observations</ion-label>
+      <ion-textarea name="otherobv" [(ngModel)]="otherobservations"></ion-textarea>
+    </ion-item>
+  
+    <button ion-button type="submit" (click) = "onSubmit()" block>Submit Checklist</button>
+  </form>
+    
+  </ion-content>
+  

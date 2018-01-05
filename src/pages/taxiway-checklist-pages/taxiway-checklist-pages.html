@@ -1,0 +1,63 @@
+
+<ion-header>
+
+  <ion-navbar>
+  
+    <ion-title text-center color="primary">
+        <p style="color:blue">Taxiway Checklist Stack</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<button ion-item (click)="onnewuploadclick()" item-end>
+       
+        <ion-icon name="md-cloud-upload" item-start ></ion-icon>
+        <ion-card text-center>
+            
+              <ion-card-header>
+              New Upload
+              </ion-card-header>
+            
+              <ion-card-content>
+             This field consists of checklists which have been filled by the duty operator 
+              </ion-card-content>
+            
+            </ion-card>
+       
+    </button>
+    <button ion-item (click)="onPendingChecklistclick()"item-end>
+        
+         <ion-icon name="logo-buffer" item-start ></ion-icon>
+         <ion-card text-center>
+             
+               <ion-card-header>
+                  Pending Checklists
+               </ion-card-header>
+             
+               <ion-card-content>
+              This field consists of list of checklists on which action needs to be taken
+               </ion-card-content>
+             
+             </ion-card>
+        
+     </button>
+     <button ion-item (click)="onApprovedChecklistclick()"item-end>
+      
+       <ion-icon name="logo-buffer" item-start ></ion-icon>
+       <ion-card text-center>
+           
+             <ion-card-header>
+                Approved Checklists
+             </ion-card-header>
+           
+             <ion-card-content>
+              This field consists of list of checklists which are approved.
+             </ion-card-content>
+           
+           </ion-card>
+      
+   </button>
+</ion-content>

@@ -1,0 +1,78 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+        <p style="color:blue">Pending Runway Checklist Stack</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #myForm="ngForm">
+    <fieldset ngModelGroup="inputs" #inputs="ngModelGroup">
+    <ion-grid class="table-users" style="color:black;">
+      <ion-row class="headers" style=" background-color: #3B5998; color: white;  font-weight:bold">
+ 
+        <ion-col scope="col" text-center>Observations</ion-col>
+        <ion-col scope="col" text-center>Acceptability</ion-col>
+        <ion-col scope="col" text-center>NC Filed Ref No. </ion-col>
+        <ion-col scope="col" text-center>Action Taken</ion-col>
+    
+     </ion-row>
+
+    
+     <ion-row *ngFor="let user of runwaydetails ; let i=index" >
+   
+          <ion-col data-title = "Observations"  text-center >
+           {{ user.Observations }}
+          </ion-col>
+          <ion-col data-title = "Acceptability"  text-center>
+              <select name="{{'dropDown'+i}}"  [(ngModel)]="user.Acceptability">
+                  <option *ngFor="let runwaysurfacesigns of acceptabilitySigns"  [value]="runwaysurfacesigns">
+                    {{ runwaysurfacesigns }}
+                  </option>
+                </select>
+          </ion-col>
+          
+          <ion-col data-title = "Ref taken if not acceptable"  text-center>
+            <input type="text" name="{{'someInput'+i}}" [(ngModel)]="user.NC_Filed_Ref_No"   >
+          </ion-col>
+          <ion-col data-title = "Action taken if not acceptable"  text-center>
+            <input type="text" name="{{'someInputName'+i}}" [(ngModel)]="user.Action_Taken"   >
+          </ion-col>
+      
+      </ion-row>
+
+ </ion-grid>
+ </fieldset>
+ 
+    
+ <ion-row center>
+   <ion-col text-center>
+      <ion-label fixed> Upload Photo: </ion-label>
+   </ion-col>
+   <ion-col text-center>
+      <input type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload" /> 
+      
+   </ion-col>
+ </ion-row>
+     
+ <ion-row center>
+   <ion-col text-center>
+      <button ion-button icon-left round (click)="sendMessage(myForm)" color="danger">
+        <ion-icon name="send"></ion-icon>
+          Reject Checklist & Send Message
+      </button>
+       </ion-col>
+ </ion-row>
+    <!--  <button ion-button icon-left round (click)="approveChecklist()" color="danger">
+        <ion-icon name="close"></ion-icon>
+          Approve Checklist
+      </button>
+  -->
+  <a href="https://mial.csia.in/MicroService/UploadFile/6.jpg">download</a>
+ </form>
+</ion-content>

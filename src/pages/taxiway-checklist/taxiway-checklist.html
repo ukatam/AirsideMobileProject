@@ -1,0 +1,504 @@
+
+<ion-header>
+  
+    <ion-navbar>
+      
+      <ion-title text-center color="primary">
+          <p style="color:blue">Taxiway Checklist Form</p>
+      </ion-title>
+    </ion-navbar>
+  
+</ion-header>
+  
+  <ion-content padding>
+    <form [formGroup]="taxiwaychecklistForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+            <ion-label fixed style="color: black;"> Date </ion-label>
+            <ion-datetime displayFormat="MMM DD YYYY" formControlName="date" min="{{ currentdate | date:'yyyy-MM-dd' }}" max="2020" [(ngModel)]="myDate" required> </ion-datetime>
+      </ion-item>
+      <ion-item>
+             <ion-label floating style="color: black;"> Taxiway Inspected </ion-label>
+             <ion-input type="text" formControlName="rwyinspected" ngModel required></ion-input> 
+            <ion-select formControlName="rwyinspected" ngModel required>
+                <ion-option *ngFor="let option of rwyOptions" [value]="option.Areas"> {{ option.Area_Group }} </ion-option>
+            </ion-select>
+      </ion-item>
+      <ion-item>
+            <ion-label floating style="color: black;"> Time of inspection </ion-label>
+            <!-- <ion-input type="text" formControlName="inspectiontime" ngModel required></ion-input> -->
+          
+            <ion-datetime  formControlName="inspectiontime" pickerFormat="HH:mm" ngModel required> </ion-datetime>
+            
+      </ion-item>
+      <ion-item text-center>
+        + :Acceptable  &nbsp; &nbsp; &nbsp;
+        - :Not Acceptable &nbsp; &nbsp; &nbsp;
+        0 :Nill
+      </ion-item>
+      <div id="demo">
+          <h1 style="color: navy; font-weight: bold;">Taxiway Checklist Form</h1>
+          <h2>This checklist contains taxiway parameters to perform daily checks</h2>
+          <div class="table-responsive-vertical shadow-z-1">
+            <table id="table" class="table table-hover table-mc-light-blue">
+              <thead>
+                <tr>
+                    <th style="color: navy; font-weight: bold;">Observations</th>
+                    <th style="color: navy; font-weight: bold;">Acceptability</th>
+                    <th style="color: navy; font-weight: bold;">Action Taken</th>
+                    <th text-center style="color: navy; font-weight: bold;">NC Filed Ref Number</th>
+                    <th text-center style="color: navy; font-weight: bold;">Image_</th>
+                </tr>
+              </thead>
+          <tbody>
+          <tr>
+            <td>
+              <h6>Taxiway edge lights</h6>
+            </td>
+            <td style="color: black">
+              <select formControlName="taxiwayedgelights" ngModel required>
+                <option *ngFor="let approachlightsigns of acceptabilitySigns" [value]="approachlightsigns">
+                  {{ approachlightsigns }}
+                </option>
+              </select>
+            </td>
+            <td style="color: black">
+              <ion-input type="text" formControlName="taxiwayedgelightsAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td style="color: black">
+              <ion-input type="text" formControlName="taxiwayedgelightsNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+              <input type="file" id="1" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+             <h6>Taxiway centre line lights</h6>
+            </td>
+            <td style="color: black">
+              <select formControlName="taxiwaycentrelinelights" ngModel required>
+                <option *ngFor="let taxiwaycentrelinelights of acceptabilitySigns" [value]="taxiwaycentrelinelights">
+                  {{ taxiwaycentrelinelights }}
+                </option>
+              </select>
+            </td>
+            <td style="color: black">
+              <ion-input type="text" formControlName="taxiwaycentrelinelightsAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td style="color: black">
+              <ion-input type="text" formControlName="taxiwaycentrelinelightsNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="2" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td data-title = "Observations">
+            <h6> Runway guard lights </h6>
+            </td>
+            <td>
+              <select formControlName="runwayguardlights" ngModel required>
+                <option *ngFor="let runwayguardlights of acceptabilitySigns" [value]="runwayguardlights">
+                  {{ runwayguardlights }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="runwayguardaction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="runwayguardlightsNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+             <h6> Taxiway surfaces </h6>
+            </td>
+            <td>
+              <select formControlName="taxiwaysurfaces" ngModel required>
+                <option *ngFor="let taxiwaysurfaces of acceptabilitySigns" [value]="taxiwaysurfaces">
+                  {{ taxiwaysurfaces }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="taxiwaysurfacesAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="taxiwaysurfacesNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="4" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+             <h6> FOD </h6>
+            </td>
+            <td>
+              <select formControlName="FOD" ngModel required>
+                <option *ngFor="let runwaythrlightsigns of acceptabilitySigns" [value]="runwaythrlightsigns">
+                  {{ runwaythrlightsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="FODAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="FODNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="5" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+              <h6> Taxiway markings </h6>
+            </td>
+            <td>
+              <select formControlName="taxiwaymarkings" ngModel required>
+                <option *ngFor="let runwayendlightsigns of acceptabilitySigns" [value]="runwayendlightsigns">
+                  {{ runwayendlightsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="taxiwaymarkingsAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="taxiwaymarkingsNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="6" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+             <h6> Obvious pavement damage </h6>
+            </td>
+            <td>
+              <select formControlName="obviouspavementdamage" ngModel>
+                <option *ngFor="let runwaytdzlightsigns of acceptabilitySigns" [value]="runwaytdzlightsigns">
+                  {{ runwaytdzlightsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="obviouspavementdamageAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="obviouspavementdamageNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="7" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+             <h6> Obstruction </h6>
+            </td>
+            <td>
+              <select formControlName="Obstruction" ngModel required>
+                <option *ngFor="let retilsandtwylightsigns of acceptabilitySigns" [value]="retilsandtwylightsigns">
+                  {{ retilsandtwylightsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="ObstructionAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="ObstructionNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="8" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+         
+          <tr style="color: black">
+            <td>
+              <h6> Manholes/drain covers </h6>
+            </td>
+            <td>
+              <select formControlName="manholesdraincovers" ngModel required>
+                <option *ngFor="let fodsigns of acceptabilitySigns" [value]="fodsigns">
+                  {{ fodsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="manholesdraincoversAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="manholesdraincoversNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="9" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+              <h6> Open cabling </h6>
+            </td>
+            <td>
+              <select formControlName="opencabling" ngModel required>
+                <option *ngFor="let runwayshouldersigns of acceptabilitySigns" [value]="runwayshouldersigns">
+                  {{ runwayshouldersigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="opencablingAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="opencablingNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="10" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+              <h6> Signs – lighting, visibility and legibility </h6>
+            </td>
+            <td>
+              <select formControlName="signslightning" ngModel required>
+                <option *ngFor="let runwaymarkingsigns of acceptabilitySigns" [value]="runwaymarkingsigns">
+                  {{ runwaymarkingsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="signslightningAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="signslightningNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="11" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+             <h6> Drains – Cleanliness </h6>
+            </td>
+            <td>
+              <select formControlName="drainscleanliness" ngModel required>
+                <option *ngFor="let rubberbuildupsigns of acceptabilitySigns" [value]="rubberbuildupsigns">
+                  {{ rubberbuildupsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="drainscleanlinessAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="drainscleanlinessNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="12" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr style="color: black">
+            <td>
+             <h6>  Drains – Structural Condition </h6>
+            </td>
+            <td>
+              <select formControlName="drainsstructural" ngModel required>
+                <option *ngFor="let opencablingsigns of acceptabilitySigns" [value]="opencablingsigns">
+                  {{ opencablingsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="drainsstructuralAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="drainsstructuralNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="13" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h6> Wind Directional Indicator </h6>
+            </td>
+            <td>
+              <select formControlName="winddirectionalindicator" ngModel required>
+                <option *ngFor="let lightingvisibilitysigns of acceptabilitySigns" [value]="lightingvisibilitysigns">
+                  {{ lightingvisibilitysigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="winddirectionalindicatorAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="winddirectionalindicatorNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="14" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h6> Birds </h6>
+            </td>
+            <td>
+              <select formControlName="birdsign" ngModel required>
+                <option *ngFor="let birdsigns of acceptabilitySigns" [value]="birdsigns">
+                  {{ birdsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="birdsignAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="birdsignNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="15" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+             <h6> Standing water/flooding </h6>
+            </td>
+            <td>
+              <select formControlName="standingwater" ngModel required>
+                <option *ngFor="let dampwetsigns of acceptabilitySigns" [value]="dampwetsigns">
+                  {{ dampwetsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="standingwaterAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="standingwaterNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="16" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+           <tr>
+            <td>
+              <h6> Airside works </h6>
+            </td>
+            <td>
+              <select formControlName="airsideworks" ngModel required>
+                <option *ngFor="let obstructionsigns of acceptabilitySigns" [value]="obstructionsigns">
+                  {{ obstructionsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="airsideworksAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="airsideworksNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="17" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h6> Spillages </h6>
+            </td>
+            <td>
+              <select formControlName="spillagesign" ngModel required>
+                <option *ngFor="let spillagesigns of acceptabilitySigns" [value]="spillagesigns">
+                  {{ spillagesigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="spillageAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="spillageNC" placeholder="NC Filed Ref No." ngModel text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="18" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+         
+          <tr>
+            <td>
+            <h6> Fire hazards </h6>
+            </td>
+            <td>
+              <select formControlName="firehazards" ngModel required>
+                <option *ngFor="let grasslengthsigns of acceptabilitySigns" [value]="grasslengthsigns">
+                  {{ grasslengthsigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="firehazardsAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="firehazardsNC" placeholder="NC Filed Ref No." text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="19" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+           <tr>
+            <td>
+             <h6> Grass length (applicable during day light) </h6>
+            </td>
+            <td>
+              <select formControlName="grasslength" ngModel required>
+                <option *ngFor="let runwaysurfacesigns of acceptabilitySigns" [value]="runwaysurfacesigns">
+                  {{ runwaysurfacesigns }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <ion-input type="text" formControlName="grasslengthAction" placeholder="Action Taken" ngModel></ion-input>
+            </td>
+            <td data-title = "NC Filed Ref No.">
+              <ion-input type="text" formControlName="grasslengthNC" placeholder="NC Filed Ref No."  text-center></ion-input>
+            </td>
+            <td> 
+                <input type="file" id="20" value="Upload" (change)="fileChange($event)" class="upload" /> 
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <h6> Department </h6>
+              <ion-input type="text" formControlName="InspectorSign" placeholder="Department Name" ngModel text-center></ion-input>
+            </td>
+            <td>
+              
+            </td>
+            <td style="text-align: center;">
+              <h6> Name </h6>
+              <ion-input type="text" formControlName="InspectorName" placeholder="Enter Name" [(ngModel)]="user" disabled="true" text-center></ion-input>
+            </td>
+            <!-- <td>
+              <ion-label fixed text-center>Signature</ion-label>
+              <ion-input type="text" formControlName="InspectorSign" placeholder="Mark your signature" ngModel></ion-input>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+      <ion-item>
+        <ion-label floating>Other Observations</ion-label>
+        <ion-textarea formControlName="otherobservations" ngModel></ion-textarea>
+      </ion-item>
+  
+    <button ion-button type="submit" block [disabled]="!taxiwaychecklistForm.valid">Submit Checklist</button>
+    </form>
+  </ion-content>
+  

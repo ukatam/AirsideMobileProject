@@ -1,0 +1,31 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <ion-title text-center color="primary">
+          <p style="color:blue">Log In</p>
+      </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
+    <form [formGroup] = "loginForm" (ngSubmit)="login()">
+      <ion-list inset [@bounceInBottom]="formState">
+        <ion-item>
+          <ion-label floating color="danger">UserName or Email</ion-label>
+          <ion-input type="text" formControlName="uM_USER_NAME" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating color="danger">Password</ion-label>
+          <ion-input type="password" formControlName="uM_PASSWORD" required></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button block type="submit" [@fadeIn] = "loginState" [disabled]="!loginForm.valid">Sign In</button>
+    </form>
+  </div>
+
+</ion-content>
